@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # 必要なツール(vimとcurl)をインストール
-RUN apt-get update && apt-get install -y vim curl && apt-get clean
+RUN apt-get update && apt-get install -y vim curl && apt-get clean && echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
 
 # パッケージをインストール
 RUN pip install --no-cache-dir -r requirements.txt
