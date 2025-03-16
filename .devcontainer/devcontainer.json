@@ -45,7 +45,7 @@
         }
     },
     "postCreateCommand": "npm install", // コンテナ作成後に必要な依存関係をインストール
-    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",  // gitの設定を継承
     "forwardPorts": [3000], // Next.jsがデフォルトで使うポートをフォワード
     "remoteUser": "root" // Node.js環境用ユーザーを設定
 
