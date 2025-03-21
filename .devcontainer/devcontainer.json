@@ -40,7 +40,10 @@
                 "ms-python.vscode-pylance", // Pylance - 高速な型チェックと補完
                 "ms-toolsai.jupyter", // Jupyterノートブックサポート
                 "njpwerner.autodocstring", // Docstring自動生成
-                "kevinrose.vsc-python-indent" // Pythonのインデント補助
+                "kevinrose.vsc-python-indent", // Pythonのインデント補助
+
+                // GitHub Copilot
+                "GitHub.copilot" // GitHub Copilot拡張
             ]
         }
     },

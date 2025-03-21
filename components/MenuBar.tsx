@@ -1,8 +1,14 @@
+import React from 'react';
 import Link from "next/link";
+import styles from '../styles/MenuBar.module.css'; // CSSモジュールをインポート
 
-export default function MenuBar() {
+interface MenuBarProps {
+  className?: string;
+}
+
+const MenuBar: React.FC<MenuBarProps> = ({ className }) => {
   return (
-    <nav className="mt-4">
+    <nav className={`mt-4 ${styles.corporateLogo} ${className}`}>
       <ul className="flex space-x-4 justify-center">
         <li><Link href="/">HOME</Link></li>
         <li><Link href="/lessons">レッスン内容</Link></li>
@@ -12,4 +18,6 @@ export default function MenuBar() {
       </ul>
     </nav>
   );
-}
+};
+
+export default MenuBar;

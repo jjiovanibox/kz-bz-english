@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import MenuBar from "../components/MenuBar";
 import "./globals.css";
+import { AppBar, Box, Container, CssBaseline, Toolbar, Typography } from '@mui/material';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "親しみやすい英会話教室のホームページ",
-  description: "親しみやすい英会話教室のホームページ",
+  title: "ビバリーママのENGLISHカフェ",
+  description: "ビバリーママのENGLISHカフェの公式サイトです。",
 };
 
 export default function RootLayout({
@@ -26,19 +27,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-light-blue text-dark-gray`}
-      >
-        <header className="p-4 bg-white shadow-md">
-          <h1 className="text-3xl font-bold">ビバリーママのENGLISHカフェ へようこそ！</h1>
-          <MenuBar />
-        </header>
-        <main className="p-4">
+      <head>
+        <link rel="icon" href="/images/favicon.ico" />
+        <meta name="title" content={metadata.title as string ?? ''} />
+        <meta name="description" content={metadata.description ?? ''} />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-light-blue text-dark-gray`}>
+        <CssBaseline />
+        <AppBar position="static" sx={{ backgroundColor: 'var(green)' }} elevation={1}>
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <span className="fuwamoko">ビバリーママ</span>のENGLISHカフェ へようこそ！
+            </Typography>
+            <MenuBar className="corporate-logo" />
+          </Toolbar>
+        </AppBar>
+        <Container component="main" sx={{ py: 4 }}>
           {children}
-        </main>
-        <footer className="p-4 bg-white shadow-md text-center">
-          <p className="text-sm">© 2025 ビバリーママのENGLISHカフェ. All rights reserved.</p>
-        </footer>
+        </Container>
+        <Box component="footer" sx={{ py: 4, textAlign: 'center', bgcolor: 'background.paper' }}>
+          <Typography variant="body2" color="textSecondary">
+            © 2025 ビバリーママのENGLISHカフェ. All rights reserved.
+          </Typography>
+        </Box>
       </body>
     </html>
   );

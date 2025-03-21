@@ -1,64 +1,42 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-/* 追加のカスタムスタイル */
-.pricing-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+:root {
+  --skin-color: #f5d6c6; /* 肌色の変数を追加 */
 }
 
-.pricing-cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-@media (min-width: 768px) {
-  .pricing-cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-}
-
-.card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
-
-.card ul {
+nav ul {
   list-style: none;
   padding: 0;
-  margin-bottom: 20px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
 }
 
-.card ul li {
-  margin-bottom: 5px;
+nav ul li {
+  margin: 0 10px;
 }
 
-.card button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+nav ul li a {
+  text-decoration: none;
+  color: var(--light-blue);
+  padding: 8px 16px;
   transition: background-color 0.3s;
 }
 
-.card button:hover {
-  background-color: #0056b3;
+nav ul li a:hover {
+  background-color: var(--light-blue);
+  border-radius: 4px;
+}
+
+@font-face {
+  font-family: 'FuwaMoko';
+  src: url('/fonts/fuwamocofont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.fuwamoko {
+  font-family: 'FuwaMoko', sans-serif;
+  font-size: 3rem; /* フォントサイズを大きく設定 */
+  color: orange; /* 直接オレンジ色を指定 */
+  text-align: center;
+  margin: 0.5em 0;
 }
