@@ -1,8 +1,30 @@
-.corporate-logo {
-    font-family: 'CorporateLogoRounded', sans-serif;
-    src: url('/fonts/CorporateLogoRounded.ttf') format('truetype');
-    font-size: 3rem;
-    color: var(--skin-color);
-    text-align: center;
-    margin: 0.5em 0;
-  }
+.corporateLogo {
+  font-family: 'CorporateLogoRounded', sans-serif;
+}
+
+.menuItem {
+  font-family: 'FuwaMoko', sans-serif; /* FuwaMokoフォントを適用 */
+  color: black; /* フォントカラーを黒に設定 */
+  text-decoration: none; /* リンクの下線を削除 */
+  padding: 0 1rem; /* パディングを追加 */
+  position: relative; /* 仕切りのために相対位置を設定 */
+}
+
+.menuItem:hover {
+  text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+.navbar {
+  background-color: #ffe4e1; /* 背景色を薄ピンクに設定 */
+  padding: 1rem; /* パディングを追加 */
+  border-radius: 0.5rem; /* 角を丸くする */
+}
+
+.menuItem:not(:last-child)::after {
+  content: "|"; /* 仕切りを追加 */
+  position: absolute; /* 絶対位置を設定 */
+  right: 0; /* 右側にスペースを追加 */
+  top: 50%; /* 垂直方向に中央揃え */
+  transform: translateY(-50%); /* 垂直方向に中央揃え */
+  color: black; /* 仕切りの色を黒に設定 */
+}

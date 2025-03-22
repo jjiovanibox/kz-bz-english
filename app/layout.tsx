@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Link from "next/link";
 import MenuBar from "../components/MenuBar";
 import "./globals.css";
 import { AppBar, Box, Container, CssBaseline, Toolbar, Typography } from '@mui/material';
@@ -32,12 +33,12 @@ export default function RootLayout({
         <meta name="title" content={metadata.title as string ?? ''} />
         <meta name="description" content={metadata.description ?? ''} />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-light-blue text-dark-gray`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <CssBaseline />
-        <AppBar position="static" sx={{ backgroundColor: 'var(green)' }} elevation={1}>
+        <AppBar position="static" className="header" sx={{ backgroundColor: '#ffe4e1' }} elevation={1}>
           <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <span className="fuwamoko">ビバリーママ</span>のENGLISHカフェ へようこそ！
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'black' }}>
+              <Link href="/" className="fuwamoko">ビバリーママ<span className="small-font">の</span><span className="fuwamoko2">ＥＮＧＬＩＳＨ</span><span className="fuwamoko"></span>カフェ<span className="small-font">へ</span>ようこそ</Link>
             </Typography>
             <MenuBar className="corporate-logo" />
           </Toolbar>
