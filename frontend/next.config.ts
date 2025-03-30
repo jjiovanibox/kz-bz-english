@@ -2,13 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-};
-
-export default nextConfig;
-
-
-
-module.exports = {
+  pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
+  webpack: (config) => {
+    config.resolve.modules.push(__dirname + '/frontend');
+    return config;
+  },
   images: {
     domains: ['res.cloudinary.com'], // Cloudinaryのホスト名を追加
     remotePatterns: [
@@ -22,3 +20,5 @@ module.exports = {
     ],
   },
 };
+
+export default nextConfig;

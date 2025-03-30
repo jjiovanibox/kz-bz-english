@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Link from "next/link";
 import MenuBar from "../components/MenuBar";
 import "./globals.css";
+import "../styles/appbar.css"; // appbar.cssをインポート
 import { AppBar, Box, Container, CssBaseline, Toolbar, Typography } from '@mui/material';
 
 const geistSans = localFont({
@@ -35,14 +36,7 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <CssBaseline />
-        <AppBar position="static" className="header" sx={{ backgroundColor: '#ffe4e1' }} elevation={1}>
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: 'black' }}>
-              <Link href="/" className="fuwamoko">ビバリーママ<span className="small-font">の</span><span className="fuwamoko2">ＥＮＧＬＩＳＨ</span><span className="fuwamoko"></span>カフェ<span className="small-font">へ</span>ようこそ</Link>
-            </Typography>
-            <MenuBar className="corporate-logo" />
-          </Toolbar>
-        </AppBar>
+        <MenuBar className="menu-bar" />
         <Container component="main" sx={{ py: 4 }}>
           {children}
         </Container>

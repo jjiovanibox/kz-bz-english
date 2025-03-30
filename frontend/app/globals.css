@@ -60,8 +60,3 @@ body {
   background-repeat: no-repeat; /* 背景画像を繰り返さない */
   color: white; /* テキストカラーを白に設定 */
 }
-
-.header {
-  background-color: white; /* ヘッダーの背景色をホワイトに設定 */
-  color: black; /* ヘッダーのテキストカラーを黒に設定 */
-}
