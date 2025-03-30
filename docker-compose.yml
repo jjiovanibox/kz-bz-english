@@ -1,14 +1,29 @@
 version: '3.8'
 
 services:
-  app:
+  frontendS:
     build:
-      context: .
+      context: frontend
       dockerfile: Dockerfile
     ports:
       - "3030:3030"
     volumes:
       - ./frontend:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+    env_file:
+      - .env
+    command: npm run dev
+
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app
       - /app/node_modules
     environment:
       NODE_ENV: development
