@@ -1,85 +1,64 @@
-import React from "react";
-import { Container, Typography, TextField, Button, Box } from "@mui/material";
+"use client";
+
+import React, { useState } from "react";
+import { Container, Typography, TextField, Button, Box, Alert } from "@mui/material";
 
 export default function Contacts() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simulate form submission
+    setSuccess(true);
+    setTimeout(() => setSuccess(false), 3000);
+  };
+
   return (
-    <Container
-      maxWidth="sm"
-      sx={{
-        mt: 8,
-        mb: 8,
-        p: 4,
-        backgroundColor: "#ffffff",
-        borderRadius: 2,
-        boxShadow: 3,
-      }}
-    >
-      {/* タイトル */}
-      <Typography
-        variant="h4"
-        component="h1"
-        align="center"
-        gutterBottom
-        sx={{ fontWeight: "bold", mb: 4 }}
-      >
+    <Container maxWidth="sm">
+      <Typography variant="h4" component="h1" gutterBottom>
         お問い合わせ
       </Typography>
-
-      {/* フォーム */}
-      <Box
-        component="form"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 3,
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        {/* お名前 */}
+      {success && <Alert severity="success">送信が成功しました！</Alert>}
+      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
         <TextField
-          id="name"
+          fullWidth
           label="お名前"
-          variant="outlined"
-          fullWidth
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          margin="normal"
           required
+          sx={{ backgroundColor: "white" }} // 背景色を白に設定
         />
-
-        {/* メールアドレス */}
         <TextField
-          id="email"
+          fullWidth
           label="メールアドレス"
-          type="email"
-          variant="outlined"
-          fullWidth
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          margin="normal"
           required
+          sx={{ backgroundColor: "white" }} // 背景色を白に設定
         />
-
-        {/* メッセージ */}
         <TextField
-          id="message"
+          fullWidth
           label="メッセージ"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          margin="normal"
           multiline
           rows={4}
-          variant="outlined"
-          fullWidth
           required
+          sx={{ backgroundColor: "white" }} // 背景色を白に設定
         />
-
-        {/* 送信ボタン */}
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          size="large"
-          sx={{
-            alignSelf: "center",
-            px: 5,
-            py: 1.5,
-            textTransform: "none",
-            fontSize: "1rem",
-          }}
-        >
+        <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
           送信
         </Button>
       </Box>

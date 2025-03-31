@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  frontendS:
+  frontend:
     build:
       context: frontend
       dockerfile: Dockerfile
@@ -10,11 +10,11 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    environment:
-      NODE_ENV: development
+    # environment:
+      # NEXT_PUBLIC_API_URL: "http://localhost:8080"
     env_file:
       - .env
-    command: npm run dev
+    command: /bin/sh -c "npm run dev"
 
   backend:
     build:
@@ -29,4 +29,4 @@ services:
       NODE_ENV: development
     env_file:
       - .env
-    command: npm run dev
+    command: /bin/sh -c "gunicorn"

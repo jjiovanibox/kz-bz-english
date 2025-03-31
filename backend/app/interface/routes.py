@@ -1,7 +1,16 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 
 router = APIRouter()
 
-@router.get("/api/hello")
-def hello():
-    return {"message": "Hello from the API!"}
+# 問い合わせデータのスキーマ
+class ContactForm(BaseModel):
+    name: str
+    email: str
+    message: str
+
+@router.post("/api/contact")
+def submit_contact_form(contact: ContactForm):
+    # ここでデータを保存したり、メール送信処理を行う
+    print(f"Received contact form: {contact}")
+    return {"message": "お問い合わせを受け付けました！"}
