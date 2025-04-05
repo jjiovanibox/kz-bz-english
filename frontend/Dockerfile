@@ -4,8 +4,20 @@ FROM node:18-alpine AS builder
 # Set the working directory
 WORKDIR /app
 
-# Install dependencies for Alpine (if needed)
-RUN apk add --no-cache bash
+# Copy package.json and package-lock.json first to leverage Docker caching
+COPY package.json package-lock.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application code
+COPY . .
+
+# Stage 2: Create a lightweight production image
+FROM node:18-alpine
+
+# Set the working directory
+WORKDIR /app
 
 # Copy package.json and package-lock.json first to leverage Docker caching
 COPY package.json package-lock.json ./
@@ -16,20 +28,8 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Build the application
-# RUN npm run build
-
-# Stage 2: Create a lightweight production image
-FROM node:18-alpine
-
-# Set the working directory
-WORKDIR /app
-
-# Copy only the built application from the builder stage
-COPY --from=builder /app ./
-
 # Expose the application port
 EXPOSE 3030
 
 # Start the application
-# CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

@@ -1,22 +1,36 @@
 "use client";
 
 import React, { useState } from "react";
+import Axios from "axios";
 import { Container, Typography, TextField, Button, Box, Alert } from "@mui/material";
+import Config from "../config"; // config.tsxをインポート
 
 export default function Contacts() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setSuccess(true);
-    setTimeout(() => setSuccess(false), 3000);
+    setSuccess(false);
+    setError(false);
+
+    try {
+      console.log(Config.url + "api/contact")
+      const response = await Axios.post(Config.url + "api/contact", formData);
+      // const response = await Axios.post("http://localhost:8080/api/contact", formData);
+      console.log("Form submitted successfully:", response.data);
+      setSuccess(true);
+      setFormData({ name: "", email: "", message: "" }); // フォームをリセット
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setError(true);
+    }
   };
 
   return (
@@ -25,6 +39,7 @@ export default function Contacts() {
         お問い合わせ
       </Typography>
       {success && <Alert severity="success">送信が成功しました！</Alert>}
+      {error && <Alert severity="error">送信に失敗しました。もう一度お試しください。</Alert>}
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
         <TextField
           fullWidth

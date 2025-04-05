@@ -14,3 +14,10 @@ worker_class = "uvicorn.workers.UvicornWorker"
 
 # タイムアウト設定（秒）
 timeout = 120
+
+# ログレベルを設定
+loglevel = "DEBUG"
+
+# ログを標準出力に出力
+accesslog = "-"  # アクセスログを標準出力に出力
+errorlog = "-"   # エラーログを標準出力に出力
