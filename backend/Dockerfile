@@ -1,7 +1,17 @@
-FROM python:3.13-slim
+FROM python:3.11-slim
 
 # 作業ディレクトリを設定
 WORKDIR /app
+
+# 必要なツールをインストール
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    && apt-get clean
+
+# Rustツールチェーンをインストール
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 # 必要なファイルをコピー
 COPY ./app /app/app
