@@ -1,33 +1,26 @@
 import boto3
 from botocore.exceptions import ClientError
-from botocore.config import Config
-from common_repository import dynamodb
+from app.infrastructure.dynamodb import DynamodbOperations
 
 TABLE_NAME = 't_contact'
 dynamo_client = boto3.client('dynamodb')
-table = dynamo_client.Table(TABLE_NAME)
 
-dynamodb = dynamodb(TABLE_NAME)
-dynamodb.put_item()
-
-def save(contact):
+def t_contact_repository_save(contact):
     try:
-        item = {
-            'contactId': {'S': contact.contactId},
-            'name': {'S': contact.name},
-            'email': {'S': contact.email},
-            'message': {'S': contact.message},
+        options = {
+            'TableName': TABLE_NAME,
+            'Item': {
+                'name': {'S': contact.name},
+                'email': {'S': contact.email},
+                'message': {'S': contact.message},
+                'created_at': {'S': contact.created_at.isoformat()},
+            },
         }
-        dynamodb.put_item(item)
-    except ClientError as e:
-        print(f"Error saving contact: {e.response['Error']['Message']}")
-    else:
-        print("Contact saved successfully.")
-        'TableName': self.TABLE_NAME,
-        'Item': item,
-        }
-        print("Contact saved successfully.")
-        return True
+        dynamo_operations = DynamodbOperations(TABLE_NAME)
+        dynamo_operations.put_item(options)
     except ClientError as e:
         print(f"Error saving contact: {e.response['Error']['Message']}")
         return False
+
+# エクスポートするオブジェクトを明示的に指定
+__all__ = ["save"]

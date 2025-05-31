@@ -1,5 +1,4 @@
 import { Container, Grid, Card, CardContent, Typography, Button } from '@mui/material';
-import styles from '../styles/Pricing.module.css'; // TailwindCSSのスタイルをインポート
 
 export default function Pricing() {
   return (
